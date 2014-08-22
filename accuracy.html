@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p id="demo">Click the button to get your coordinates:</p>
+
+    <div id="div1">Accurate coordinates:</div>
+
+<button onclick="getLocation()">Try It</button>
+
+<script>
+var x = document.getElementById("demo");
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+var lat, long;
+function showPosition(position) {
+    x.innerHTML="Latitude: " + position.coords.latitude + 
+    "<br>Longitude: " + position.coords.longitude;
+    lat = position.coords.latitude;
+    long = position.coords.longitude;
+    var GoogleMap_Diff_Latitude = 0.120634;
+    var GoogleMap_Diff_Longitude = -0.053786;
+    var Correct_latitude = parseFloat(lat) + parseFloat(GoogleMap_Diff_Latitude);
+    var Correct_longitude = parseFloat(long) + parseFloat(GoogleMap_Diff_Longitude);
+    setValues(Correct_latitude, Correct_longitude);
+}
+
+
+
+var y = document.getElementById("div1");
+function setValues(Correct_latitude, Correct_longitude) {
+
+    y.innerHTML = "Correct Latitude: " + Correct_latitude + "<br> Correct Longitude: " + Correct_longitude;
+}
+  
+
+</script>
+
+</body>
+</html>
+<!--coords on google : 
+Fire Brigade 
+19.196297, 72.822487
+
+Asmitha Jyothi CHS, Atharva Back Rd, Asmita Jyoti Housing Society, Malad West, Mumbai, Maharashtra 400095
+19.196618, 72.823870
+
+
+
+By Geo Location from my room using HTML5 Browser (Is Greater than Map Coords)
+Chrome - 19.075984, 72.877656 (correct)
+
+Firefox - 19.075984 , 72.877656 (same as chrome)
+
+IE - 18.975 , 72.825798 (wrong)
+
+
+difference in Google map and HTML5 browser coordinates:
+
+Lattitude Difference : 0.120634
