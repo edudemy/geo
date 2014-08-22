@@ -62,7 +62,7 @@ navigator.geolocation.getAccurateCurrentPosition = function (geolocationSuccess,
 
 function getLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getAccurateCurrentPosition(onSuccess, onError, onProgress, {desiredAccuracy:20, maxWait:15000});
+        navigator.geolocation.getAccurateCurrentPosition(geolocationSuccess, geolocationError, geoprogress, {desiredAccuracy:20, maxWait:15000});
     } else { 
         x.innerHTML = "Geolocation is not supported by this browser.";
     }
