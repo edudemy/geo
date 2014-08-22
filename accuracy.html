@@ -38,7 +38,7 @@ label:
             navigator.geolocation.clearWatch(watchID);
             foundPosition(position);
         } else {
-            goto label;
+            continue label;
         }
     };
     
