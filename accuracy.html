@@ -21,6 +21,7 @@ var geolocationError = function (error) {
   };
   alert("Error: " + errors[error.code]);
 }; 
+ options = options || {};
 
 var lastCheckedPosition,
         locationEventCount = 0,
@@ -43,7 +44,7 @@ var lastCheckedPosition,
     
 navigator.geolocation.getAccurateCurrentPosition = function (geolocationSuccess, geolocationError, checkLocation, options) {
     
-    options = options || {};
+   
 
     var stopTrying = function () {
         navigator.geolocation.clearWatch(watchID);
