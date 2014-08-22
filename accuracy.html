@@ -46,6 +46,11 @@ navigator.geolocation.getAccurateCurrentPosition = function (geolocationSuccess,
     var foundPosition = function (position) {
         geolocationSuccess(position);
     };
+    function geolocationSuccess(position)
+    {
+        currentPosition = position;
+
+    };   
 
     if (!options.maxWait)            options.maxWait = 10000; // Default 10 seconds
     if (!options.desiredAccuracy)    options.desiredAccuracy = 20; // Default 20 meters
