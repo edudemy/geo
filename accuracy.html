@@ -22,14 +22,6 @@ var geolocationError = function (error) {
   alert("Error: " + errors[error.code]);
 }; 
 
-    
-navigator.geolocation.getAccurateCurrentPosition = function (geolocationSuccess, geolocationError, checkLocation, options) {
-    var lastCheckedPosition,
-        locationEventCount = 0,
-        watchID,
-        timerID;
-
-    options = options || {};
 
     var checkLocation = function (position) {
         lastCheckedPosition = position;
@@ -44,6 +36,14 @@ navigator.geolocation.getAccurateCurrentPosition = function (geolocationSuccess,
             checkLocation(position);
         }
     };
+    
+navigator.geolocation.getAccurateCurrentPosition = function (geolocationSuccess, geolocationError, checkLocation, options) {
+    var lastCheckedPosition,
+        locationEventCount = 0,
+        watchID,
+        timerID;
+
+    options = options || {};
 
     var stopTrying = function () {
         navigator.geolocation.clearWatch(watchID);
