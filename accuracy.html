@@ -23,7 +23,7 @@ var geolocationError = function (error) {
 }; 
 
     
-navigator.geolocation.getAccurateCurrentPosition = function (geolocationSuccess, geolocationError, geoprogress, options) {
+navigator.geolocation.getAccurateCurrentPosition = function (geolocationSuccess, geolocationError, checkLocation, options) {
     var lastCheckedPosition,
         locationEventCount = 0,
         watchID,
@@ -41,7 +41,7 @@ navigator.geolocation.getAccurateCurrentPosition = function (geolocationSuccess,
             navigator.geolocation.clearWatch(watchID);
             foundPosition(position);
         } else {
-            geoprogress(position);
+            checkLocation(position);
         }
     };
 
@@ -76,7 +76,7 @@ navigator.geolocation.getAccurateCurrentPosition = function (geolocationSuccess,
 
 function getLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getAccurateCurrentPosition(geolocationSuccess, geolocationError, geoprogress, {desiredAccuracy:20, maxWait:15000});
+        navigator.geolocation.getAccurateCurrentPosition(geolocationSuccess, geolocationError, checkLocation, {desiredAccuracy:20, maxWait:15000});
     } else { 
         x.innerHTML = "Geolocation is not supported by this browser.";
     }
