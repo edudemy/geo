@@ -38,7 +38,7 @@ var lastCheckedPosition,
             navigator.geolocation.clearWatch(watchID);
             foundPosition(position);
         } else {
-            geolocationError(position);
+            checkLocation(lastCheckedPosition);
         }
     };
     
