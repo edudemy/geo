@@ -27,7 +27,7 @@ var lastCheckedPosition,
         locationEventCount = 0,
         watchID,
         timerID;
-label:
+[lbl] start:
     var checkLocation = function (position) {
         lastCheckedPosition = position;
         locationEventCount = locationEventCount + 1;
@@ -38,7 +38,7 @@ label:
             navigator.geolocation.clearWatch(watchID);
             foundPosition(position);
         } else {
-            continue label;
+            goto start;
         }
     };
     
