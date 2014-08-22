@@ -10,35 +10,6 @@
 
 <script>
 var x = document.getElementById("demo");
-
-function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getAccurateCurrentPosition(onSuccess, onError, onProgress, {desiredAccuracy:20, maxWait:15000});
-    } else { 
-        x.innerHTML = "Geolocation is not supported by this browser.";
-    }
-}
-var lat, long;
-function showPosition(position) {
-    x.innerHTML="Latitude: " + position.coords.latitude + 
-    "<br>Longitude: " + position.coords.longitude;
-    lat = position.coords.latitude;
-    long = position.coords.longitude;
-    var GoogleMap_Diff_Latitude = 0.120634;
-    var GoogleMap_Diff_Longitude = -0.053786;
-    var Correct_latitude = parseFloat(lat) + parseFloat(GoogleMap_Diff_Latitude);
-    var Correct_longitude = parseFloat(long) + parseFloat(GoogleMap_Diff_Longitude);
-    setValues(Correct_latitude, Correct_longitude);
-}
-
-
-
-var y = document.getElementById("div1");
-function setValues(Correct_latitude, Correct_longitude) {
-
-    y.innerHTML = "Correct Latitude: " + Correct_latitude + "<br> Correct Longitude: " + Correct_longitude;
-}
-
 navigator.geolocation.getAccurateCurrentPosition = function (geolocationSuccess, geolocationError, geoprogress, options) {
     var lastCheckedPosition,
         locationEventCount = 0,
@@ -86,6 +57,37 @@ navigator.geolocation.getAccurateCurrentPosition = function (geolocationSuccess,
     watchID = navigator.geolocation.watchPosition(checkLocation, onError, options);
     timerID = setTimeout(stopTrying, options.maxWait); // Set a timeout that will abandon the location loop
 }
+
+
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getAccurateCurrentPosition(onSuccess, onError, onProgress, {desiredAccuracy:20, maxWait:15000});
+    } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+var lat, long;
+function showPosition(position) {
+    x.innerHTML="Latitude: " + position.coords.latitude + 
+    "<br>Longitude: " + position.coords.longitude;
+    lat = position.coords.latitude;
+    long = position.coords.longitude;
+    var GoogleMap_Diff_Latitude = 0.120634;
+    var GoogleMap_Diff_Longitude = -0.053786;
+    var Correct_latitude = parseFloat(lat) + parseFloat(GoogleMap_Diff_Latitude);
+    var Correct_longitude = parseFloat(long) + parseFloat(GoogleMap_Diff_Longitude);
+    setValues(Correct_latitude, Correct_longitude);
+}
+
+
+
+var y = document.getElementById("div1");
+function setValues(Correct_latitude, Correct_longitude) {
+
+    y.innerHTML = "Correct Latitude: " + Correct_latitude + "<br> Correct Longitude: " + Correct_longitude;
+}
+
 </script>
 
 </body>
