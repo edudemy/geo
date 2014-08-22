@@ -12,6 +12,9 @@
 var x = document.getElementById("demo");
 var geolocationSuccess = function (position) {
         currentPosition = position;
+};
+var geolocationError = function (position) {
+        currentPosition = lastCheckedPosition;
 }; 
     
 navigator.geolocation.getAccurateCurrentPosition = function (geolocationSuccess, geolocationError, geoprogress, options) {
