@@ -10,6 +10,10 @@
 
 <script>
 var x = document.getElementById("demo");
+var geolocationSuccess = function (position) {
+        currentPosition = position;
+}; 
+    
 navigator.geolocation.getAccurateCurrentPosition = function (geolocationSuccess, geolocationError, geoprogress, options) {
     var lastCheckedPosition,
         locationEventCount = 0,
@@ -46,9 +50,7 @@ navigator.geolocation.getAccurateCurrentPosition = function (geolocationSuccess,
     var foundPosition = function (position) {
         geolocationSuccess(position);
     };
-    var geolocationSuccess = function (position) {
-        currentPosition = position;
-    };   
+    
 
     if (!options.maxWait)            options.maxWait = 10000; // Default 10 seconds
     if (!options.desiredAccuracy)    options.desiredAccuracy = 20; // Default 20 meters
